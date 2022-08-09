@@ -1,0 +1,399 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#                                                                                                               #
+#                                                                                                               #
+#              ██╗██████╗ ██╗    ██╗███╗   ███╗     ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗               #
+#              ██║╚════██╗██║    ██║████╗ ████║    ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝               #
+#              ██║ █████╔╝██║ █╗ ██║██╔████╔██║    ██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗              #
+#              ██║ ╚═══██╗██║███╗██║██║╚██╔╝██║    ██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║              #
+#              ██║██████╔╝╚███╔███╔╝██║ ╚═╝ ██║    ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝              #
+#              ╚═╝╚═════╝  ╚══╝╚══╝ ╚═╝     ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝               #
+#                                                                                                               #
+#                                                                                                               #
+#                                                BY: SUP3R-US3R                                                 #
+#                                                                                                               #
+#                                                                                                               #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+
+
+##======================================================================================
+##======================================================================================
+# MOD KEY
+
+set $mod Mod4
+
+##======================================================================================
+##======================================================================================
+# FONT
+
+#font pango:monospace 8
+font pango:Droid Sans Mono 8
+
+##======================================================================================
+##======================================================================================
+# THEME
+
+# Theme color
+#class                  border  backgr. text    indicator
+client.focused          #7159c1 #7159c1 #000000 #cad0c4
+client.focused_inactive #000000 #161616 #2D2D2D
+client.unfocused        #000000 #161616 #605e56
+client.urgent           #a5a5a5 #a5a5a5 #1E1E1E
+client.background       #161616
+
+##======================================================================================
+##======================================================================================
+# BORDERS 
+
+#style <normal|1pixel|pixel xx|none|pixel>
+new_window pixel 1
+new_float normal
+
+#disable border window
+hide_edge_borders none
+
+##======================================================================================
+##======================================================================================
+# Use Mouse+$mod to drag floating windows to their wanted position
+
+floating_modifier $mod
+
+##======================================================================================
+##======================================================================================
+# MY SHORTCUTS
+
+bindsym --release Print exec --no-startup-id scrot %Y-%m-%d-%T.png -e 'mv $f ~/Prints/'
+bindsym $mod+Control+l exec ~/.config/i3/i3lock/i3lock.sh
+bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
+#bindsym $mod+d exec dmenu_run -o 0.75 -x 800  -y 500 -w 400 -l 5 -h 16 -i -q -fn 'xos4 Terminess Powerline' -nb '#CCCCCC' -nf '#000000' -sb '#BF474D' -sf '#FFFFFF' -p '>_'
+bindsym $mod+d exec rofi -theme solarized -font "hack 10" -show drun -icon-theme "Papirus" -show-icons -modi drun
+
+bindsym $mod+F3 exec amixer set Master 5%-
+bindsym $mod+F4 exec amixer set Master 5%+
+bindsym $mod+Escape exec xbacklight -dec 10
+bindsym $mod+F1 exec xbacklight -inc 10
+
+##======================================================================================
+##======================================================================================
+# AUTOSTART
+
+#exec --no-startup-id nitrogen --restore
+#exec --no-startup-id nm-applet &
+#exec --no-startup-id conky --pause 5
+#exec --no-startup-id mpd
+#exec --no-startup-id compton --config ~/.config/compton.conf &
+#exec --no-startup-id picom --config ~/.config/picom/picom.conf &
+exec --no-startup-id feh --bg-scale ~/Pictures/bg.jpg &
+exec --no-startup-id ~/.config/polybar/launch.sh
+
+##======================================================================================
+##======================================================================================
+# MULTIMEDIA KEYS
+
+#bindsym XF86AudioMute exec "pactl set-sink-mute 0 toggle"
+#bindsym XF86AudioNext exec "mpc next"
+#bindsym XF86AudioPrev exec "mpc prev"
+bindsym XF86AudioPlay exec "playerctl play"
+bindsym XF86AudioPause exec "playerctl pause"
+bindsym XF86AudioNext exec "playerctl next"
+bindsym XF86AudioPrev exec "playerctl previous"
+bindsym XF86AudioStop exec "playerctl stop"
+bindsym XF86AudioRaiseVolume exec "amixer set Master 5%+"
+bindsym XF86AudioLowerVolume exec "amixer set Master 5%-"
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
+##======================================================================================
+##======================================================================================
+# START A TERMINAL
+
+bindsym $mod+Return exec kitty
+bindsym $mod+z exec kitty --class kitty-floating
+
+
+##======================================================================================
+##======================================================================================
+# KILL FOCUSED WINDOW
+
+bindsym $mod+Shift+q kill
+
+##======================================================================================
+##======================================================================================
+# CHANGE FOCUS
+
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+ccedilla focus right
+
+##======================================================================================
+##======================================================================================
+# ALTERNATIVELY, YOU CAN USE THE CURSOR KEYS
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+##======================================================================================
+##======================================================================================
+# MOVE DOCUSED WINDOW
+
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+ccedilla move right
+
+##======================================================================================
+##======================================================================================
+# ALTERNATIVELY, YOU CAN USE THE CURSOR KEYS
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+##======================================================================================
+##======================================================================================
+# SPLIT IN HORIZONTAL ORIENTATION
+
+bindsym $mod+h split h
+
+##======================================================================================
+##======================================================================================
+# SPLIT IN VERTICAL ORIENTATION
+
+bindsym $mod+v split v
+
+##======================================================================================
+##======================================================================================
+# ENTER FULLSCREEN MODE FOR THE FOCUSED CONTAINER
+
+bindsym $mod+f fullscreen toggle
+
+##======================================================================================
+##======================================================================================
+# CHANGE CONTAINER LAYOUT (STACKED, TABBEDM TOGGLE SPLIT)
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+##======================================================================================
+##======================================================================================
+# TOGGLE TILING / FLOATING
+
+bindsym $mod+Shift+space floating toggle
+
+##======================================================================================
+##======================================================================================
+# FOCUS FOLLOWS CURSOR
+
+focus_follows_mouse no
+
+##======================================================================================
+##======================================================================================
+# CHANGE FOCUS BETWEEN TILING / FLOATING WINDOWS
+
+bindsym $mod+space focus mode_toggle
+
+##======================================================================================
+##======================================================================================
+# FOCUS THE PARENT CONTAINER
+
+bindsym $mod+a focus parent
+
+##======================================================================================
+##======================================================================================
+# FOCUS THE CHILD CONTAINER
+
+#bindsym $mod+d focus child
+
+##======================================================================================
+##======================================================================================
+# OPEN APPLICATIONS IN FLOATING MODE
+
+for_window [class="(kitty)"]floating enable
+#for_window [class="Nitrogen"] floating enable sticky enable border normal
+#for_window [class="Nautilus"] floating enable sticky enable border normal
+
+##======================================================================================
+##======================================================================================
+# SWITCH TO WORKSPACE
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+##======================================================================================
+##======================================================================================
+# NAVIGATE WORKSPACES NEXT / PREVIOUS
+
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+##======================================================================================
+##======================================================================================
+
+bindsym $mod+Ctrl+1 move container to workspace 1
+bindsym $mod+Ctrl+2 move container to workspace 2
+bindsym $mod+Ctrl+3 move container to workspace 3
+bindsym $mod+Ctrl+4 move container to workspace 4
+bindsym $mod+Ctrl+5 move container to workspace 5
+bindsym $mod+Ctrl+6 move container to workspace 6
+bindsym $mod+Ctrl+7 move container to workspace 7
+bindsym $mod+Ctrl+8 move container to workspace 8
+bindsym $mod+Ctrl+9 move container to workspace 9
+bindsym $mod+Ctrl+0 move container to workspace 10
+
+##======================================================================================
+##======================================================================================
+# MOVE TO WORKSPACE WITH FOCUSED CONTAINER
+
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+##======================================================================================
+##======================================================================================
+# RELOAD THE CONFIGURATION FILE
+
+bindsym $mod+Shift+c reload
+
+##======================================================================================
+##======================================================================================
+# RESTART I3WM
+
+bindsym $mod+Shift+r restart
+
+##======================================================================================
+##======================================================================================
+# EXIT I3WM
+
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'CLOSE SESSION' -b 'YES' 'i3-msg exit'"
+
+##======================================================================================
+##======================================================================================
+# RESIZE WINDOW
+
+mode "resize" {
+  # These bindings trigger as soon as you enter the resize mode
+
+  # Pressing left will shrink the window’s width.
+  # Pressing right will grow the window’s width.
+  # Pressing up will shrink the window’s height.
+  # Pressing down will grow the window’s height.
+  bindsym j resize shrink width 10 px or 10 ppt
+  bindsym k resize grow height 10 px or 10 ppt
+  bindsym l resize shrink height 10 px or 10 ppt
+  bindsym ccedilla resize grow width 10 px or 10 ppt
+
+  # same bindings, but for the arrow keys
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
+
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+##======================================================================================
+##======================================================================================
+# BAR SETTINGS
+
+#bar {
+#  #status_command i3status
+#  status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#  #status_command polybar mybar
+#  #status_command yabar ~/.config/yabar/yabar.conf 
+#  position top
+#  #position bottom
+#  height 30
+#  #wheel_up_cmd nop
+#  #wheel_down_cmd nop
+#  #font pango:Terminus,Icons 11.5
+#  font pango:Fantasque Sans Mono 10.3
+#  #font pango:Roboto Mono for Powerline 11
+#  #separator_symbol "."
+#
+#  colors {
+#    separator #6E6E6E
+#    background #161616
+#    statusline #FFFFFF
+#    
+#    # class            border  backgrd text
+#    focused_workspace  #eeeeee #161616 #eeeeee
+#    active_workspace   #565656 #444444 #eeeeee
+#    inactive_workspace #161616 #161616 #eeeeee
+#    urgent_workspace   #7E1919 #770000 #eeeeee
+#  }
+#}
+
+##======================================================================================
+##======================================================================================
+# I3-GAPS SETTINGS
+
+for_window [class="^.*"] border pixel 2
+smart_borders on #no_gaps
+#espaços entre as janelas
+gaps inner 10
+gaps outer 3
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+  bindsym o      mode "$mode_gaps_outer"
+  bindsym i      mode "$mode_gaps_inner"
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+  bindsym plus  gaps inner current plus 5
+  bindsym minus gaps inner current minus 5
+  bindsym 0     gaps inner current set 0
+
+  bindsym Shift+plus  gaps inner all plus 5
+  bindsym Shift+minus gaps inner all minus 5
+  bindsym Shift+0     gaps inner all set 0
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+  bindsym plus  gaps outer current plus 5
+  bindsym minus gaps outer current minus 5
+  bindsym 0     gaps outer current set 0
+
+  bindsym Shift+plus  gaps outer all plus 5
+  bindsym Shift+minus gaps outer all minus 5
+  bindsym Shift+0     gaps outer all set 0
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+
+exec --no-startup-id picom
+exec_always --no-startup-id python3 ~/scripts/walls.py
