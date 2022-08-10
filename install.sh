@@ -30,6 +30,7 @@ readonly PKGS_PACMAN=(
 readonly PKGS_AUR=(
   visual-studio-code-bin
   google-chrome
+  siji-git
 )
 
 function install_pkgs_pacman(){
@@ -48,7 +49,7 @@ function install_yay(){
   if ! type -p yay > /dev/null
   then
     clear
-    echo -e "[★] - Instalando yay\n"
+    echo -e "[-] - Instalando yay\n"
     sleep 3
     cd $HOME
     sudo rm -rf $HOME/yay
@@ -62,7 +63,7 @@ function install_yay(){
 
 function install_fonts(){
   clear
-  echo -e "[★] - Instalando fontes do sistema...\n"
+  echo -e "[-] - Instalando fontes do sistema...\n"
   sleep 3
   cd $HOME
   sudo rm -rf fonts
@@ -81,7 +82,7 @@ function install_fonts(){
 
 function install_dotfiles(){
   clear
-  echo -e "[★] - Preparando Dotfiles...\n"
+  echo -e "[-] - Preparando Dotfiles...\n"
   sleep 3
   cd $HOME
   git clone https://github.com/fnixdev/Dotfiles
@@ -89,47 +90,47 @@ function install_dotfiles(){
   xdg-user-dirs-gtk-update
   cd $HOME/Dotfiles/
 
-  echo -e "\n[★] - Instalando i3gaps config\n"
+  echo -e "\n[-] - Instalando i3gaps config\n"
   sleep 3
   sudo rm -rf $HOME/.config/i3
   mkdir -p $HOME/.config/i3
   cp -r assets/.config/i3 $HOME/.config
 
-  echo -e "\n[★] - Instalando Polybar config\n"
+  echo -e "\n[-] - Instalando Polybar config\n"
   sleep 3
   sudo rm -rf $HOME/.config/polybar
   mkdir -p $HOME/.config/polybar
   cp -r assets/.config/polybar $HOME/.config
 
-  echo -e "\n[★] - Instalando Picom config\n"
+  echo -e "\n[-] - Instalando Picom config\n"
   sleep 3
   sudo rm -rf $HOME/.config/picom
   mkdir -p $HOME/.config/picom
   cp -r assets/.config/picom $HOME/.config
 
-  echo -e "\n[★] - Instalando Rofi config\n"
+  echo -e "\n[-] - Instalando Rofi config\n"
   sleep 3
   sudo rm -rf $HOME/.config/rofi
   mkdir -p $HOME/.config/rofi
   cp -r assets/.config/rofi $HOME/.config
 
-  echo -e "\n[★] - Instalando Kitty config\n"
+  echo -e "\n[-] - Instalando Kitty config\n"
   sleep 3
   sudo rm -rf $HOME/.config/kitty
   mkdir -p $HOME/.config/kitty
   cp -r assets/.config/kitty $HOME/.config
 
-  echo -e "\n[★] - Instalando .xinitrc config\n"
+  echo -e "\n[-] - Instalando .xinitrc config\n"
   sleep 3
   sudo rm -rf $HOME/.xinitrc
   cp assets/.xinitrc $HOME/.xinitrc
 
-  echo -e "\n[★] - Movendo scripts\n"
+  echo -e "\n[-] - Movendo scripts\n"
   sleep 3
   sudo rm -rf $HOME/scripts
   cp -r scripts $HOME
 
-  echo -e "\n[★] - Configurando Teclado ABNT2\n"
+  echo -e "\n[-] - Configurando Teclado ABNT2\n"
   sleep 3
   sudo rm -rf /etc/X11/xorg.conf.d
   sudo mkdir -p /etc/X11/xorg.conf.d
@@ -142,34 +143,35 @@ function config_setup(){
   amixer set 'Master' 100% unmute
   sudo alsactl store
 
-  echo -e "\n[★] - Configurando Pacman\n"
+  echo -e "\n[-] - Configurando Pacman\n"
   sleep 3
   sudo sed -i '37iILoveCandy' /etc/pacman.conf
   sudo sed -i '/Color/,+1 s/^#//' /etc/pacman.conf
 
-  echo -e "\n[★] - Configurando Wallpapers\n"
+  echo -e "\n[-] - Configurando Wallpapers\n"
   sleep 3
   rm -rf $HOME/Wallpapers
   cp -r $HOME/Dotfiles/assets/Wallpapers $HOME
+  cp -r $HOME/Dotfiles/assets/.fehbg $HOME
   feh --bg-max --bg-fill --no-fehbg --randomize $HOME/Wallpapers/*
 }
 
 function oh_my_zsh(){
   clear
-  echo -e "[★] - Instalando Oh-My-Zsh\n"
+  echo -e "[-] - Instalando Oh-My-Zsh\n"
   sleep 3
   cd $HOME
   sudo rm -rf $HOME/.oh-my-zsh
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   git clone https://github.com/zsh-users/zsh-syntax-highlighting $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
   git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-  echo -e "[★] - Copiando zsh config\n"
+  echo -e "[-] - Copiando zsh config\n"
   cp $HOME/Dotfiles/assets/.zshrc $HOME/.zshrc
 }
 
 function config_system(){
   clear
-  echo -e "[★] - Configurando o Sistema\n"
+  echo -e "[-] - Configurando o Sistema\n"
   sleep 3
   cd $HOME
   read -p "Git email: " gitEmail
@@ -177,14 +179,14 @@ function config_system(){
   read -p "Git name: " gitName
   git config --global user.name ${gitName}
 
-  echo -e "[★] - Configurando o LastFM Now Playing\n"
+  echo -e "[-] - Configurando o LastFM Now Playing\n"
   sleep 3
   read -p "Digite seu username LastFM: " userLast
   sed -i "s/lastuser/$userLast/g" $HOME/.config/polybar/scripts/lastfm.py
   read -p "Digite sua LastFM ApiKey: " keyLast
   sed -i "s/lastkey/$keyLast/g" $HOME/.config/polybar/scripts/lastfm.py
 
-  echo -e "[★] - Configurando o Modulos Python\n"
+  echo -e "[-] - Configurando o Modulos Python\n"
   sleep 3
   pip install -U autopep8
   pip install apscheduler

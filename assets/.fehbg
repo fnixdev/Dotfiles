@@ -1,0 +1,3 @@
+#!/bin/sh
+
+feh --bg-max --bg-fill --no-fehbg --randomize $HOME/Wallpapers/*
