@@ -18,6 +18,7 @@ readonly PKGS_PACMAN=(
   lxappearance
   scrot
   git
+  polybar
   lm_sensors
   alsa-utils alsa-lib
   xorg-server xorg-xprop xorg-xinit xorg-xrandr arandr xorg-xfd
@@ -57,6 +58,25 @@ function install_yay(){
     cd ..
     sudo rm -rf $HOME/yay
   fi
+}
+
+function install_fonts(){
+  clear
+  echo -e "[★] - Instalando fontes do sistema...\n"
+  sleep 3
+  cd $HOME
+  sudo rm -rf fonts
+  git clone https://github.com/powerline/fonts.git
+  sh fonts/install.sh
+  sudo rm -rf fonts
+  sudo rm -rf .fonts/firacode/firacodeUnzip
+  cd .fonts/firacode
+  mkdir firacodeUnzip
+  cp Fira_Code_v5.2.zip firacodeUnzip
+  cd firacodeUnzip
+  unzip Fira_Code_v5.2.zip
+  sudo mv ttf/* /usr/share/fonts/TTF
+  fc-cache -fv
 }
 
 function install_dotfiles(){
@@ -173,6 +193,7 @@ function config_system(){
 install_pkgs_pacman
 install_yay
 install_pkgs_aur
+install_fonts
 install_dotfiles
 config_setup
 config_system
