@@ -64,6 +64,7 @@ function install_dotfiles(){
   echo -e "[★] - Preparando Dotfiles...\n"
   sleep 3
   cd $HOME
+  git clone https://github.com/fnixdev/Dotfiles
   xdg-user-dirs-update
   xdg-user-dirs-gtk-update
   cd $HOME/Dotfiles/
